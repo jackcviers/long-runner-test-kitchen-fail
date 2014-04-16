@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+driver_config:
+  require_chef_omnibus: true
+  vagrantfile_erb: "templates/default/Vagrantfile.erb"
+  customize:
+    memory: 4096
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.10
+
+suites:
+  - name: default
+    run_list:
+      - recipe[long-runner-test-kitchen-fail::default]
+    attributes:
